@@ -27,20 +27,21 @@ class Game
         }
         @j1 = Player.new("inconnu",false)
         @j2 = Player.new("inconnu",false)
-        @plateau = Board.new
+        @plateau = nil
     end
     # permet de lancer le jeux
     def play
         rematch = true
         while rematch == true do
+            @plateau = Board.new
             tour = 1
             puts "###################################################################################"
             puts "#                     Bienvenu dans le jeu Tic-tac-toe!!!                         #"
             puts "###################################################################################"
             puts "Veuillez entrer le nom du Joueur X:"
-            a = gets.chomp
+            a = gets.chomp # On demande le nom du premier joueur
             puts "Veuillez entrer le nom du Joueur O:"
-            b = gets.chomp
+            b = gets.chomp # On demande le nom du second joueur
     
             @j1.name = a
             @j2.name = b
@@ -107,6 +108,7 @@ class Game
                 elsif v == "2"
                     quit = true
                     rematch = false
+                    puts "Merci d'etre passe !!! :)"
                 else
                     quit = false
                     puts "\n\nTapez:\n1- Pour recommencer\n2- Pour quitter"
