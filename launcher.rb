@@ -1,5 +1,5 @@
-require_relative 'Game'
+require_relative 'Game' #On demande d'utiliser Game.rb
 
-g = Game.new
+g = Game.new  #On genere un nouveau jeu
 
-g.play
+g.play  #On joue
