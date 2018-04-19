@@ -33,11 +33,11 @@ class Board
 
     # Verifie si le jeux est fini
     def game_over(player)
-        if @@tab[0].select {|x| x.status =~ /player/}.count == 3 # verifie si des points sont alignés au 1er lignes
+        if @@tab[0][0].status == player && @@tab[0][1].status == player && @@tab[0][2].status == player # verifie si des points sont alignés au 1er lignes
             true
-        elsif @@tab[1].select {|x| x.status =~ /player/}.count == 3 # verifie si des points sont alignés au 2é lignes
+        elsif @@tab[1][0].status == player && @@tab[1][1].status == player && @@tab[1][2].status == player # verifie si des points sont alignés au 2é lignes
             true
-        elsif @@tab[2].select {|x| x.status =~ /player/}.count == 3 # verifie si des points sont alignés au 3é lignes
+        elsif @@tab[2][0].status == player && @@tab[2][1].status == player && @@tab[2][2].status == player # verifie si des points sont alignés au 3é lignes
             true
         elsif @@tab[0][0].status == player && @@tab[1][1].status == player && @@tab[2][2].status == player # verifie si des points sont alignés en oblique
             true

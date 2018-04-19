@@ -31,108 +31,69 @@ class Game
     end
     # permet de lancer le jeux
     def play
-        rematch = true
         tour = 1
-        @plateau = Board.new
-        while rematch == true do
-            puts "###################################################################################"
-            puts "#                     Bienvenu dans le jeu Tic-tac-toe!!!                         #"
-            puts "###################################################################################"
-            puts "Veuillez entrer le nom du Joueur X:"
-            a = gets.chomp
-            puts "Veuillez entrer le nom du Joueur O:"
-            b = gets.chomp
+        puts "###################################################################################"
+        puts "#                     Bienvenu dans le jeu Tic-tac-toe!!!                         #"
+        puts "###################################################################################"
+        puts "Veuillez entrer le nom du Joueur X:"
+        a = gets.chomp
+        puts "Veuillez entrer le nom du Joueur O:"
+        b = gets.chomp
 
-            @j1.name = a
-            @j2.name = b
-        
-            while tour != 9 do
-                @plateau.view_board
-                puts "\n"
-                if tour % 2 == 0
-                    puts "Au tour du joueur O (#{@j2.name.capitalize})"
-                    p = gets.chomp
-                    while !@positions[p.upcase.to_sym]  do
-                        puts "Cette position n'existe pas #{@j2.name.capitalize}, veuillez resaisir:" 
-                        p = gets.chomp
-                    end
-                    while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
-                        puts "Cette position est deja prise #{@j2.name.capitalize}, veuillez resaisir:" 
-                        p = gets.chomp
-                    end
-                    @plateau.set_position(@positions[p.upcase.to_sym], "O")
-                    if @plateau.game_over("O")
-                        tour = 9
-                        @j2.victory = true
-                    else
-                        tour += 1
-                    end
-                else
-                    puts "Au tour du joueur X (#{@j1.name.capitalize})"
-                    p = gets.chomp
-                    while !@positions[p.upcase.to_sym] do 
-                        puts "Cette position n'existe pas #{@j1.name.capitalize}, veuillez resaisir:" 
-                        p = gets.chomp
-                    end
-                    while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
-                        puts "Cette position est deja prise #{@j1.name.capitalize}, veuillez resaisir:" 
-                        p = gets.chomp
-                    end
-                    @plateau.set_position(@positions[p.upcase.to_sym], "X")
-                    if @plateau.game_over("X")
-                        tour = 9
-                        @j1.victory = true
-                    else
-                        tour += 1
-                    end
-                end
-            end
-        
+        @j1.name = a
+        @j2.name = b
+    
+        while tour != 10 do
             @plateau.view_board
-        
-            if @j1.victory == true
-                puts "Bravo #{@j1.name.upcase}! T'as gagné !!!!"
-                puts "Une renvanche?\n1- Oui\n2- Non"
-                v = gets.chomp
-                while v != "1" || v != "2" do
-                    if v == "1"
-                        rematch = true
-                    elsif v == "2"
-                        rematch = false
-                    else
-                        puts "Veuillez taper 1 pour recommence et taper 2 pour quitter le jeux\n1- Oui\n2- Non"
-                        v = gets.chomp
-                    end
+            puts "\n"
+            if tour % 2 == 0
+                puts "Au tour du joueur O (#{@j2.name.capitalize})"
+                p = gets.chomp
+                while !@positions[p.upcase.to_sym]  do
+                    puts "Cette position n'existe pas #{@j2.name.capitalize}, veuillez resaisir:" 
+                    p = gets.chomp
                 end
-            elsif @j2.victory == true
-                puts "Bravo #{@j2.name.upcase}! T'as gagné !!!!"
-                puts "Une renvanche?\n1- Oui\n2- Non"
-                v = gets.chomp
-                while v != "1" || v != "2" do
-                    if v == "1"
-                        rematch = true
-                    elsif v == "2"
-                        rematch = false
-                    else
-                        puts "Veuillez taper 1 pour recommence et taper 2 pour quitter le jeux\n1- Oui\n2- Non"
-                        v = gets.chomp
-                    end
+                while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
+                    puts "Cette position est deja prise #{@j2.name.capitalize}, veuillez resaisir:" 
+                    p = gets.chomp
+                end
+                @plateau.set_position(@positions[p.upcase.to_sym], "O")
+                if @plateau.game_over("O")
+                    tour = 10
+                    @j2.victory = true
+                else
+                    tour += 1
                 end
             else
-                puts "Match nul!!!!!"
-                puts "Une renvanche?\n1- Oui\n2- Non"
-                v = gets.chomp
-                while v != "1" || v != "2" do
-                    if v == "1"
-                        rematch = true
-                    elsif v == "2"
-                        rematch = false
-                    else
-                        puts "Veuillez taper 1 pour recommence et taper 2 pour quitter le jeux\n1- Oui\n2- Non"
-                        v = gets.chomp
-                    end
+                puts "Au tour du joueur X (#{@j1.name.capitalize})"
+                p = gets.chomp
+                while !@positions[p.upcase.to_sym] do 
+                    puts "Cette position n'existe pas #{@j1.name.capitalize}, veuillez resaisir:" 
+                    p = gets.chomp
+                end
+                while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
+                    puts "Cette position est deja prise #{@j1.name.capitalize}, veuillez resaisir:" 
+                    p = gets.chomp
+                end
+                @plateau.set_position(@positions[p.upcase.to_sym], "X")
+                if @plateau.game_over("X")
+                    tour = 10
+                    @j1.victory = true
+                else
+                    tour += 1
                 end
             end
+            break if @plateau.game_over("X")
+        end
+    
+        @plateau.view_board
+    
+        if @j1.victory == true
+            puts "Bravo #{@j1.name.upcase}! T'as gagné !!!!"
+        elsif @j2.victory == true
+            puts "Bravo #{@j2.name.upcase}! T'as gagné !!!!"
+        else
+            puts "Match nul!!!!!"
         end
     end
 end
