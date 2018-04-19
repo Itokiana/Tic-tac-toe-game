@@ -19,4 +19,4 @@
  index.rb
 
 
-**Executez index.rb**  
+**Executez launcher.rb**  
