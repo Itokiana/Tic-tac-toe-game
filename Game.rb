@@ -1,10 +1,18 @@
 require_relative 'Player'
 require_relative 'Board'
 require 'pry'
+
+=begin
+
+cette classe s'occupe de gérer toute la partie. 
+À l'initialisation elle créé 2 instance de Player, et 1 instance de Board (l'instance de Board, initialise 9 instances de BoardCases). 
+Game s'occupe de finir la partie si un joueur a gagné, de demander aux utilisateurs où ils veulent jouer à chaque tour
+
+=end
     
 
 class Game
-
+    # Initialize le jeux
     def initialize
         @positions = {
             :A1 => [0,0],
@@ -21,7 +29,7 @@ class Game
         @j2 = Player.new("inconnu",false)
         @plateau = Board.new
     end
-
+    # permet de lancer le jeux
     def play
         rematch = true
         tour = 1
@@ -128,6 +136,3 @@ class Game
         end
     end
 end
-
-binding.pry
-
