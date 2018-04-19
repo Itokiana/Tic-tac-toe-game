@@ -35,7 +35,10 @@ class Game
         tour = 1
         @plateau = Board.new
         while rematch == true do
-            puts "Bienvenu dans le jeu Tic-tac-toe!!!\nVeuillez entrer le nom du Joueur X:"
+            puts "###################################################################################"
+            puts "#                     Bienvenu dans le jeu Tic-tac-toe!!!                         #"
+            puts "###################################################################################"
+            puts "Veuillez entrer le nom du Joueur X:"
             a = gets.chomp
             puts "Veuillez entrer le nom du Joueur O:"
             b = gets.chomp
@@ -94,7 +97,6 @@ class Game
                 while v != "1" || v != "2" do
                     if v == "1"
                         rematch = true
-                        self.initialize
                     elsif v == "2"
                         rematch = false
                     else
@@ -109,7 +111,6 @@ class Game
                 while v != "1" || v != "2" do
                     if v == "1"
                         rematch = true
-                        self.initialize
                     elsif v == "2"
                         rematch = false
                     else
@@ -124,7 +125,6 @@ class Game
                 while v != "1" || v != "2" do
                     if v == "1"
                         rematch = true
-                        self.initialize
                     elsif v == "2"
                         rematch = false
                     else
