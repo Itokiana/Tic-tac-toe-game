@@ -31,69 +31,88 @@ class Game
     end
     # permet de lancer le jeux
     def play
-        tour = 1
-        puts "###################################################################################"
-        puts "#                     Bienvenu dans le jeu Tic-tac-toe!!!                         #"
-        puts "###################################################################################"
-        puts "Veuillez entrer le nom du Joueur X:"
-        a = gets.chomp
-        puts "Veuillez entrer le nom du Joueur O:"
-        b = gets.chomp
-
-        @j1.name = a
-        @j2.name = b
+        rematch = true
+        while rematch == true do
+            tour = 1
+            puts "###################################################################################"
+            puts "#                     Bienvenu dans le jeu Tic-tac-toe!!!                         #"
+            puts "###################################################################################"
+            puts "Veuillez entrer le nom du Joueur X:"
+            a = gets.chomp
+            puts "Veuillez entrer le nom du Joueur O:"
+            b = gets.chomp
     
-        while tour != 10 do
+            @j1.name = a
+            @j2.name = b
+        
+            while tour != 10 do
+                @plateau.view_board
+                puts "\n"
+                if tour % 2 == 0
+                    puts "Au tour du joueur O (#{@j2.name.capitalize})"
+                    p = gets.chomp
+                    while !@positions[p.upcase.to_sym]  do
+                        puts "Cette position n'existe pas #{@j2.name.capitalize}, veuillez resaisir:" 
+                        p = gets.chomp
+                    end
+                    while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
+                        puts "Cette position est deja prise #{@j2.name.capitalize}, veuillez resaisir:" 
+                        p = gets.chomp
+                    end
+                    @plateau.set_position(@positions[p.upcase.to_sym], "O")
+                    if @plateau.game_over("O")
+                        tour = 10
+                        @j2.victory = true
+                    else
+                        tour += 1
+                    end
+                else
+                    puts "Au tour du joueur X (#{@j1.name.capitalize})"
+                    p = gets.chomp
+                    while !@positions[p.upcase.to_sym] do 
+                        puts "Cette position n'existe pas #{@j1.name.capitalize}, veuillez resaisir:" 
+                        p = gets.chomp
+                    end
+                    while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
+                        puts "Cette position est deja prise #{@j1.name.capitalize}, veuillez resaisir:" 
+                        p = gets.chomp
+                    end
+                    @plateau.set_position(@positions[p.upcase.to_sym], "X")
+                    if @plateau.game_over("X")
+                        tour = 10
+                        @j1.victory = true
+                    else
+                        tour += 1
+                    end
+                end
+                break if @plateau.game_over("X")
+            end
+        
             @plateau.view_board
-            puts "\n"
-            if tour % 2 == 0
-                puts "Au tour du joueur O (#{@j2.name.capitalize})"
-                p = gets.chomp
-                while !@positions[p.upcase.to_sym]  do
-                    puts "Cette position n'existe pas #{@j2.name.capitalize}, veuillez resaisir:" 
-                    p = gets.chomp
-                end
-                while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
-                    puts "Cette position est deja prise #{@j2.name.capitalize}, veuillez resaisir:" 
-                    p = gets.chomp
-                end
-                @plateau.set_position(@positions[p.upcase.to_sym], "O")
-                if @plateau.game_over("O")
-                    tour = 10
-                    @j2.victory = true
-                else
-                    tour += 1
-                end
+        
+            if @j1.victory == true
+                puts "Bravo #{@j1.name.upcase}! T'as gagné !!!!"
+            elsif @j2.victory == true
+                puts "Bravo #{@j2.name.upcase}! T'as gagné !!!!"
             else
-                puts "Au tour du joueur X (#{@j1.name.capitalize})"
-                p = gets.chomp
-                while !@positions[p.upcase.to_sym] do 
-                    puts "Cette position n'existe pas #{@j1.name.capitalize}, veuillez resaisir:" 
-                    p = gets.chomp
-                end
-                while @plateau.verify_case(@positions[p.upcase.to_sym]) != " "  do
-                    puts "Cette position est deja prise #{@j1.name.capitalize}, veuillez resaisir:" 
-                    p = gets.chomp
-                end
-                @plateau.set_position(@positions[p.upcase.to_sym], "X")
-                if @plateau.game_over("X")
-                    tour = 10
-                    @j1.victory = true
+                puts "Match nul!!!!!"
+            end
+
+            puts "\n\nFaire une revenche?\n1- Oui\n2- Non"
+            v = gets.chomp
+            quit = false
+            while quit != true do
+                if v == "1"
+                    quit = true
+                elsif v == "2"
+                    quit = true
+                    rematch = false
                 else
-                    tour += 1
+                    quit = false
+                    puts "\n\nTapez:\n1- Pour recommencer\n2- Pour quitter"
+                    v = gets.chomp
                 end
             end
-            break if @plateau.game_over("X")
-        end
-    
-        @plateau.view_board
-    
-        if @j1.victory == true
-            puts "Bravo #{@j1.name.upcase}! T'as gagné !!!!"
-        elsif @j2.victory == true
-            puts "Bravo #{@j2.name.upcase}! T'as gagné !!!!"
-        else
-            puts "Match nul!!!!!"
         end
     end
 end
