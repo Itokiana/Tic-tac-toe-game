@@ -10,13 +10,13 @@
 
 
 
-> On a créé 4 fichiers .rb, qui contiennent chacun une classe bien precise
-> 1- Board.rb 
-> 2- Board_case.rb
-> 3- Player.rb
-> 4- Game.rb 
-> Et un dernier fichier .rb qui appelle tous ces classes
-> index.rb
+> On a créé 4 fichiers .rb, qui contiennent chacun une classe bien precise:
+>   1- Board.rb 
+>   2- Board_case.rb
+>   3- Player.rb
+>   4- Game.rb 
+>   Et un dernier fichier .rb qui appelle tous ces classes
+>   index.rb
 
 
 **Executez index.rb**  
