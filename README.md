@@ -16,7 +16,7 @@
  3. Player.rb
  4. Game.rb   
 
- Et un dernier fichier ruby qui appelle tous ces classes **index.rb**
+ Et un dernier fichier ruby qui appelle tous ces classes **launcher.rb**
 
 # Lancement
 **Executez launcher.rb**
