@@ -14,9 +14,12 @@
  1. Board.rb 
  2. Board_case.rb
  3. Player.rb
- 4. Game.rb       
- Et un dernier fichier .rb qui appelle tous ces classes
- index.rb
+ 4. Game.rb   
 
+ Et un dernier fichier ruby qui appelle tous ces classes **index.rb**
 
-**Executez launcher.rb**  
+# Lancement
+**Executez launcher.rb**
+```shell
+ruby launcher.rb
+```  
